@@ -1,0 +1,43 @@
+if (JST === undefined) {
+  JST = {}
+}
+
+const workdir = '/srv'
+
+const jstResult = {
+  services: {
+    nodejs: {
+      buildImage: 'nodejs',
+      container_name: 'nodejs',
+      image: 'ghcr.io/darkanakin41/nodejs:latest',
+    },
+    'php-8-symfony': {
+      buildImage: 'php-8-symfony',
+      buildArgs: {
+        APP_ENV: 'dev'
+      },
+      image: 'ghcr.io/darkanakin41/php-symfony:latest',
+    },
+    'php-8-symfony-dev': {
+      buildImage: 'php-8-symfony',
+      buildArgs: {
+        APP_ENV: 'dev'
+      },
+      image: 'ghcr.io/darkanakin41/php-symfony:dev',
+    },
+    'php-8-symfony-prod': {
+      buildImage: 'php-8-symfony',
+      buildArgs: {
+        APP_ENV: 'prod'
+      },
+      image: 'ghcr.io/darkanakin41/php-symfony:prod',
+    },
+  },
+  binaries: {
+    'login': `echo "${JST.getConfiguration('secret.CR_PAT')}" | docker login ghcr.io -u darkanakin41 --password-stdin`,
+    'build': 'docker-compose build',
+    'push': 'docker-compose push',
+  }
+}
+
+jstResult

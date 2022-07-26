@@ -1,0 +1,6 @@
+
+/.bin
+/docker-compose.yml
+/.docker/php-8-symfony/Dockerfile
+/.docker/php-8-symfony/symfony.ini
+/pt.local.yaml
